@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "basics": "^0.0.71",
+    "express": "^4.18.2",
+    "logging": "^3.3.0",
+    "winston": "^3.9.0"
+  }
+}
