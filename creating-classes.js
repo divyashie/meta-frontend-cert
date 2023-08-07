@@ -32,8 +32,8 @@ train4.getPrototype(); // {constructor: f, toggleLights: f, lightsStatus: f, get
 /* 
 There are 4 methods on your Train class: toggleLights(), lightsStatus(), getSelf(), getPrototype() 
 1. toggleLights() method -- uses not operator `!`. This operator will change the value stored in lightsOn property 
-    of the future instance object of teh TRain class; hece the !this.lightsOn. 
-    This means that this.lightsOn will become the new vvalue of your lightsOn property on the given instance object. 
+    of the future instance object of the Train class; hence the !this.lightsOn. 
+    This means that this.lightsOn will become the new value of your lightsOn property on the given instance object. 
 
 2. lightsStatus() method on the Train class just reports the current status of the lightsOn variable of a given object 
     instance. 
@@ -42,7 +42,7 @@ There are 4 methods on your Train class: toggleLights(), lightsStatus(), getSelf
 
 4. getPrototype() console logs the prototype of the object instance of the Train class. It holds all properties shared by all the 
     object instance of the Train class. To get the prototype, use JS built-in Object.getPrototype() method, and passing it this object 
-    -- meanin, the object instance inside of which this method is invoked. 
+    -- meaning, the object instance inside of which this method is invoked. 
 
     Here, the result of calling the getPrototype() method is the console logging of all the properties on the prototype. 
     When the class syntax is used in JS, this results in only shared methods being stored on the prototype, while the constructor() function sets up 
@@ -172,7 +172,6 @@ class withDefaultParams {
         return "The value of bool1 is incorrect."
     } 
 }
-
 
 var better = new withDefaultParams(); 
 better.calculate();     //Result: 6 
