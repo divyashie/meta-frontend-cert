@@ -143,3 +143,31 @@ const output = myTag`That ${person} is a ${age}.`;
 
 console.log(output);        //That Mike is a youngster. 
 
+/* 
+    The tag does not have to be a plain identifier. 
+    Use any expression with precedence >16, which includes property access, function call, new expression, or even 
+    another tagged template literal. 
+*/
+
+console.log`Hello`;     // [' Hello '] 
+console.log.bind(1,2)`Hello`;   // 2 ['Hello'] 
+new Function("console.log(arguments)")`Hello`; 
+// [Arguments] { '0' : [ 'Hello' ]}
+
+function recursive(strings, ...values){
+    console.log(strings, values); 
+    return recursive; 
+}
+
+recursive`Hello``World`; 
+
+// [ 'Hello' ] [] 
+// [ 'World' ] [] 
+
+console.log(`Hello``World`); // TypeError; 
+// "Hello" is not a function 
+
+
+
+
+
