@@ -1,0 +1,80 @@
+<!-- 
+    GRID TEMPLATE AREA 
+    1. group one or more grid cells 
+    2. grid template area is an extension of this concept where you can give names to these grid areas. 
+    3. Using their name definition, you can address new grid area items by their names and configure them 
+        accordingly. 
+    4. Usually placed inside the body tag or any container where the grid needs to be placed. 
+        Similarly, you would define the rules for the grid. 
+    5. Main difference: grid-template-areas the values present will be the different names. 
+
+    PROCESS 
+    It isn't prescriptive but these steps are in general: 
+    - define the grid using display property 
+    - set the height and width of the grid 
+    - set the grid-template-areas with the appropriate name identifiers 
+    - add the appropriate sizes for the rows inside the grid using grid-template-columns property. 
+
+    The HTML tags that you have used inside the grid template areas are the names. 
+    For specificity, you designate a class name to these tags. 
+    Once the names are assigned, you define the properties for each class the same way that you define them conventionally.
+-->
+
+<head> 
+    <link rel="stylesheet" href="gridta.css"> 
+</head>
+<body>
+    <header> Header </header>
+    <nav class="nav-bar"> Navigation </nav>
+    <main> Main area </main>
+    <footer> Footer </footer>
+</body>
+
+body {
+    display: grid; 
+    height: 200px; 
+    grid-template-areas: "head head" 
+                        "nav main"
+                        "footer footer"; 
+    grid-template-rows: 30px 1fr 30px; 
+    grid-template-columns: 150px 1fr; 
+}
+
+header {
+    grid-area: header; 
+    background-color: lightsalmon;
+}
+
+.nav-bar{
+    grid-area: nav; 
+    background-color: lightblue; 
+}
+
+main{
+    grid-area: main; 
+    background-color: lightyellow; 
+}
+
+footer{
+    grid-area: footer; 
+    background-color: firebrick; 
+}
+
+<!--
+    Logically the CSS code is divided into 2 sections. 
+    1. You define the rules for the grid inside the body selector. 
+    2. You allocate specific rules for the different grid areas. 
+        Grid areas are distributed as per your names definition inside the grid-template-areas property. 
+
+    ABOVE CSS CODE: 
+    'head' written 2x implies 2 columns and the rest of the content follows the usual convention. 
+    #rows = #pairs of quotes used (here is 3: head head, nav main, footer footer) 
+    #rows, #columns will be set by the values of grid-template-rows & grid-template-columns. 
+    height simply gives the overall value of the height for the grid. 
+
+    Note: the height and width of grid-areas can be distributed proportionately when names are correctly added. 
+    Grid areas are convenient once you have a clear schematic of what you want in a grid. 
+    Easier to configure individual areas if you can address them by their names. 
+    Creating a block diagram using pen and paper before starting to work on a grid is always a good idea. 
+--> 
+
