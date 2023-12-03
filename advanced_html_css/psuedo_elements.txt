@@ -1,0 +1,138 @@
+PSUEDO ELEMENT 
+
+Psuedo-elements help you style a specific part of an element. 
+E.g., You can decide to apply styling to only the first word or line 
+in a given element. 
+
+Let's examine the syntax of a psuedo-element. 
+
+--------- SYNTAX  --------
+selector::pseudo-element {
+    property: value; 
+}
+
+Psuedo-elements use 2 colon characters instead of one. 
+
+--------- FIRST-LETTER ------- 
+You can use first-letter to change the color of just the first letter of each of
+of 3 points in the example text. 
+
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <link rel="stylesheet" href="pseudo4.css"> 
+    </head> 
+    <body> 
+        <ul> 
+            <li>Based in Chicago, Illinois, Little Lemon is a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist. </li> 
+            <li>The chefs draw inspiration from Italian, Greek, and Turkish culture and have a menu of 12–15 items that they rotate seasonally. The restaurant has a rustic and relaxed atmosphere with moderate prices, making it a popular place for a meal any time of the day.</li> 
+            <li>Little Lemon is owned by two Italian brothers, Mario and Adrian, who moved to the United States to pursue their shared dream of owning a restaurant. To craft the menu, Mario relies on family recipes and his experience as a chef in Italy.</li> 
+        </ul> 
+    </body> 
+    </html> 
+
+CSS code: 
+
+li::first-letter {
+    color: coral; 
+    font-size: 1.3em; 
+    font-weight: bold; 
+    line-height: 1;
+}
+
+------------- FIRST-LINE -------------
+First-line will change the complete first line of each of the bullet points to light sea green. 
+
+CSS Code: 
+
+ul {
+    list-style-type: none;
+}
+
+li::first-line {
+    color: lightseagreen; 
+    text-decoration: underline; 
+    line-height: 1; 
+}
+
+Since it is the only first line of each bullet point, 
+it almost functions like dividers between the 3 different 
+points instead of having to rely on bullets. 
+
+Note: the contents of the line to which this psuedo-element 
+is applied will change as you increase or decrease the size of 
+your viewport. 
+
+--------- SELECTION ----- 
+E.g., when you are taking notes on your device, it allows you to 
+highlight specific text. 
+On web pages, you will typically see inverted colors from white-black 
+to black-white when selecting a portion of text. 
+
+CSS Code: 
+
+ul {
+    list-style-type: none; 
+}
+
+li::selection {
+    color: brown; 
+    background-color: antiquewhite; 
+    line-height: 1; 
+}
+
+Different segments of the text are highlighted 
+depending on the text that is selected at any given 
+point. 
+
+----------- MARKER -------------
+Markers are typically used to add style 
+elements to a list, e.g., to color bullet 
+points. E.g., you can enhance the user experience 
+when you use a marker in the following way. 
+
+CSS code: 
+
+li::marker {
+    color: cornflowerblue; 
+    content: '<> '; 
+    font-size: 1.1em; 
+}
+
+Now the bullet points are cornflower blue and they have the shape specified in the code. 
+
+--------- BEFORE AND AFTER ---------
+One more pair of psuedo-elements are ::before and ::after psuedo-elements. 
+They allow you to add content before and after an element on which they are 
+allowed. New content can be added to a page without adding HTML code for it. 
+You can also add styling options for this content. 
+Example: where text is added both before and after some cooking guidelines 
+to identify them as important tips. 
+
+HTML Code: 
+<body> 
+    <p id="tips"> Don't rinse your pasta after it is drained. </p> 
+    <p> Slice the tomatoes. Take the extra efforts to seed them. </p> 
+    <p id="tips"> Peel and seed large tomatoes. </p> 
+</body> 
+
+CSS Code: 
+
+#tips::before{
+    background: darkkhaki; 
+    color: darkslategray; 
+    content: "Tip:"; 
+    padding-left: 3px; 
+    padding-right: 5px; 
+    border-radius: 10%; 
+}
+
+#tips::after{
+    background: darkkhaki; 
+    color: darkslategray; 
+    content: "!!"; 
+    padding-right: 5px; 
+    border-radius: 20%; 
+}
+
+Psuedo-elements can greatly enhance the appearance of websites. 
