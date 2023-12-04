@@ -1,0 +1,70 @@
+---------- ALL SELECTORS & THEIR SPECIFICITY ---------- 
+
+Example: the color of a certain p tag can be: blue or white, but not both. 
+CSS engines use specificity to resolve these conflicts. It helps ranking or 
+score that helps CSS determine the final rule that will be applied to a given 
+element. 
+
+Note: these rules will only be applied to a specific property. 
+
+---------- Specificity hierarchy -----------
+
+CSS has a set of rules that it uses to 'score' or assign a certain weight to selectors and this 
+creates a specificity hierarchy: 
+    - Inline styles 
+    - IDs 
+    - Classes, attributes, and pseudo-classes 
+    - Elements and pseudo-elements 
+
+---------- Inline Styles -----------
+Inline styles are attached to the elements within your HTML code like with the 'style' attribute. 
+Inline styles have the highest specificity. That means that rules that are defined as inline styles 
+will be applied irrespective of other rules. 
+
+<p styles="color: white;"> 
+p{color: blue} 
+
+The p tag will be colored white because it is declared inside the inline tag. 
+
+------------ IDs ------------------
+
+represents by "#": for example, #div 
+
+    classes, attributes, and psuedo-classes 
+    .my-class 
+    p["attribute"]
+    div:hover 
+
+    Elements and pseudo-elements: 
+    Lowest position in the specificity hierarchy 
+
+---------- Calculating Scores --------------
+CSS uses hierarchical model internally to calculate the specificity of the selectors used on the web page. 
+As the size of CSS code increases, developers unavoidably face rule conflicts. 
+Devs use the specificity hierarchy to calculate the precedence of CSS rules and to control the outcome of their web pages. 
+
+Example: 
+
+p{} => 1 element => 0001 => score 1 
+div p {} => 2 elements => 0002 => score 2 
+div p.foo {} => 2 elements and 1 class selector => 0012 => score 12 
+
+Since the 3rd case (12) for the p tag has the highest specificity, the rules for the other two cases are then overriden 
+and the rules inside the third case are applied. 
+
+Example 2: 
+p#bar => 1 element & ID => 0101 => Score: 101 
+p.foo => 1 element & 1 class => 0011 => Score: 11 
+p.p.foo => 1 element & 2 class => 0021 => Score: 21 
+
+Note: In cases when the score for different selectors is the same, here are some guidelines: 
+    - Every selector will have a score and place in the hierarchy. 
+    - In the case of selectors with equal specificity, the latest or last written rule is the one that will be applied. 
+    - In general, ID selector should be applied in cases where you need to be certain about a rule. 
+    - Universal selectors have 0 specificity value. 
+
+
+
+
+
+
