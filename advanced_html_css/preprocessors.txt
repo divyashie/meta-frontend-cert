@@ -1,0 +1,128 @@
+PREPROCESSORS: SASS, SCSS, STYLUS 
+
+// SASS, SCSS \\ 
+
+CSS preprocesses are special compilers used to create a CSS file 
+that can be referenced by an HTML document. 
+    - Used to reduce the amount of CSS you need to write. 
+    - Allow you to re-use values across multiple rules. This will make 
+        reusing animations and effects much easier. 
+    - As an extension of CSS, they help in animation and CSS code. 
+    - Provide audit functionality on top of CSS features already present. 
+        Include the option to create variables, loops, and if else statements. 
+
+Different preprocessors each have their own syntax and configurations for adding 
+these features. Commonly used preprocessors: Sass, LESS, Stylus, and PostCSS. 
+They require installation of a compiler on top of your web server. 
+
+Preprocessors have their own scripting language that adds logical structures, 
+automation properties, reusability and bloating of the code. 
+
+------------ SASS and SCSS --------------
+Syntactically Awesome Style Sheets (SASS) is a scripting language that CSS compiles 
+and interprets into CSS.
+Sassy CSS is the syntax for SASS and is an advanced version of both SASS and CSS. 
+The main difference b/w SASS and SCSS: 
+
+    - There are 2 syntaxes available for SASS. 
+        SCSS (Sassy CSS): every valid CSS stylesheet is a valid SCSS file with the same meaning. 
+        Files using this syntax ends with .scss extension 
+    -   SASS provides a more concise way of writing CSS. 
+            It uses indentention vs brackets to indicate the nesting of selectors and newlines rather than ; to separate properties. 
+            Files using this syntax have the .sass extension. 
+
+Regular CSS: 
+
+body{
+    font: 100% Arial; 
+    color: lightblue; 
+}
+
+SCSS: 
+
+$font-stack: Arial; 
+$primary-color: lightblue; 
+
+body {
+    font: 100% $font-stack; 
+    color: $primary-color; 
+}
+
+SASS: 
+
+$font-stack: Arial 
+$primary-color: lightblue 
+
+body 
+    font: 100% $font-stack 
+    color: $primary-color 
+
+The result will be the same for both. Developer can save time for complex code blocks
+where there are a number of occurrences of 'lightblue' color. 
+These variables are placed at the top of the SCSS page. 
+In the case of SASS, the variation has mainly removed {} and ; from the code. 
+
+The nesting of selectors and separation of properties here is done by means of indentation. 
+All this syntax is valid and will produce the same output. 
+
+These preprocessors also allow the usage of math and other functions that can be utilized 
+for adding rules conditionally. 
+
+Also, SASS's important functionality is the use of directives. 
+
+Syntax: 
+
+@mixin name {
+    property: value; 
+    property: value; 
+    ... 
+}
+
+@mixin some-rules {
+    color: lightblue; 
+    font-size: 25px; 
+    font-weight: bold; 
+}
+
+div {
+    @include some-rules; 
+}
+
+You will add properties you want to reuse inside @mixin. 
+You use the second directive @include and add the mixin identifier 
+that you have created using the @mixin directive. 
+
+There are a couple of other directives that are also used. 
+@import allows the import of rules from another file, and 
+@extend allows all the rules from a specific selector to be 
+added inside another selector. 
+
+------------ Stylus CSS -------------
+body 
+    font 100% Arial 
+    color lightblue
+
+Simplicity of the code without :, {}, ; 
+It is still allowed to use all of them in Stylus without any error. 
+You can use '$' or any other symbol before variables, but you are not 
+'required' to do so. 
+
+Functions are a block of self-contained code that consists of steps 
+designed to accomplish and obtain the desired output. The preprocessors, 
+as mentioned, allow the use of functions. 
+
+add(a, b) 
+    a + b 
+
+div 
+    margin add(10px, 20px) 
+
+
+Here, instead of assigning a value to the 'margin' property, you pass the 
+function add with numeric pixel values passed to it. The output of this code 
+will yield to a form 'margin 30px' after compilation. 
+
+These functions are useful when adding color gradation or creating advanced 
+geometric shapes on your web page. 
+
+
