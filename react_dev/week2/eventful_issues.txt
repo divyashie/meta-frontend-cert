@@ -1,0 +1,44 @@
+EVENTFUL ISSUES 
+
+React can work with most of the same events found in HTML, 
+although React handles them differently. 
+
+You may run into unfamiliar errors with event-driven React Code. 
+
+--------- EVENT ERRORS -----------
+A built-in error handling syntax: try ... catch syntax. 
+
+An error in JS: 
+(5).toUpperCase() => Uncaught TypeError: 5.toUpperCase is not a function 
+
+To handle this error, use a try...catch block
+such that the code continues to error when the 
+error occurs, 
+
+try {
+    (5).toUpperCase();
+} catch(e){
+     console.log(`Oops, you can't uppercase a number. 
+        Trying to do it resulted in the following`, e);
+}
+
+A simple error in a React Component: 
+function NumBillboard(props){
+    return(
+        <>
+            <h1>{prop.num}</h1>
+        </>
+    )
+}
+export default NumBillboard; 
+
+This will result in the error overlay showing in the app in the browser. 
+More specifically, 
+    - ReferenceError 
+    - prop is not defined 
+You can X out of the error overlay. 
+
+Since event-handling errors occur after the UI has been rendered, 
+you can use error-handling mechanism that already exists in JS, 
+you can use try... catch blocks instead. 
+

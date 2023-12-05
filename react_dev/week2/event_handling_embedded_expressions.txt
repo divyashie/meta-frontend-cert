@@ -1,0 +1,71 @@
+EVENT HANDLING AND EMBEDDED EXPRESSIONS 
+
+To embed expressions in event handlers in React: 
+    - with an inline, anonymous ES5 function 
+    - with an inline, anonymous ES6 function (an arrow function)
+    - using a separate function declaration
+    - using a separate function expression 
+
+A function will simply console log some words. While the result of the 
+event handling will always be the same, just the words output to the console. 
+
+------- Handling events using inline anonymous ES5 functions ---------
+This approach allows you to directly pass in an ES5 function declaration 
+as the onClick event-handling attribute's value. 
+
+<button onClick={function() {console.log('first example')}}> 
+    An inline anonymous ES5 function event handler 
+</button>
+
+---------- Handling events using inline anonymous ES6 functions(arrow functions) ---------
+You can directly pass in an ES6 function declaration as the onClick event-handling attribute's value: 
+
+<button onClick={() => console.log('second example')}>
+    An inline anonymous ES6 function event handler. 
+</button>
+
+If you want to keep all your logic inside the JSX expression assigned to the onClick attribute, use this 
+syntax. 
+
+------ Handling events using separate function declarations ----------
+You can declare a separate ES5 function declaration, and then you reference its name in the event-handling 
+onClick attribute as follows: 
+
+function App(){
+    function thirdExample(){
+        console.log('third example'); 
+    }; 
+    return (
+        <div className="thirdExample"> 
+            <button onClick={thirdExample}> 
+                using a separate function declaration 
+            </button> 
+        </div> 
+    ); 
+}; 
+
+export default App; 
+
+With a complex for onClick logic. 
+
+------ Handling events using separate function expressions --------
+You're assigning an anonymous ES6 arrow function to a const variable, 
+hence, this is a function expression. 
+
+You're then using this const variable's name to handle onClick event, 
+this is an example of handling events using a separate function expression.
+
+
+function App(){
+    const fourthExample = () => console.log('fourth example');
+    return (
+        <div className="fourthExample"> 
+            <button onClick={fourthExample}> 
+                using a separate function expression 
+            </button> 
+        </div> 
+    );    
+}; 
+
+export default App; 
+
