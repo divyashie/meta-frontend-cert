@@ -1,0 +1,66 @@
+PROP DRILLING 
+
+Prop drilling involves passing data from a parent 
+to a child component, until it reaches a more distant 
+component further down the component tree, where this 
+data is required. 
+
+Let's examine the practice of prop drilling: 
+
+function Main(props){
+    return <Header msg={props.msg} />; 
+}; 
+
+function Header(props){
+    return(
+        <div style={{ border: "10px solid whitesmoke" }}> 
+            <h1>Header there</h1> 
+            <Wrapper msg={props.msg} /> 
+        </div> 
+    ); 
+}; 
+
+function Wrapper(props){
+    return(
+        <div style={{ border: "10px solid lightgray"}}> 
+            <h2>Wrapper here</h2> 
+            <Button msg={props.msg} /> 
+        </div> 
+    ); 
+}; 
+
+function Button(props){
+    return(
+        <div style={{ border: "20px solid orange" }}> 
+            <h3>This is the Button component</h3> 
+            <button onClick={() => alert(props.msg)}>Click me!</button> 
+        </div>
+    );
+}; 
+
+function App() {
+    return(
+        <Main 
+            msg="I passed through the Header and the Wrapper and I reached the Button component"
+        />
+    );
+}; 
+
+export default App; 
+
+// Note that when the Header component is rendered from inside Main, it also 
+// receives the msg prop
+
+The components Header and Wrapper focus on having multiple components, rather 
+than describing specific component names properly. 
+
+    - Header component's function renders the Wrapper component with the msg prop 
+        passed to it. 
+    - Wrapper component renders the Button component, which also receives the msg attribute and the "Wrapper here" h2. 
+
+The Button component's function receives the props objects, then show h3. onClick event-handling attribute is passed to an 
+arrow function which should alert the string that comes from the props.msg prop. 
+
+Summary: Props drilling simply means passing a prop through props objects through several layers of components. 
+The more layers there are, the more repetitive and unnecessary this feels. 
+
