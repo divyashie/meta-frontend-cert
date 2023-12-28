@@ -6,15 +6,80 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"
   />
-  <link rel="stylesheet" href="../style.css"/> 
+  <link rel="stylesheet" href="../src/style.css"/> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="../components/header.js" type="text/javascript" defer></script>
   <script src="../components/footer.js" type="text/javascript" defer></script>
   <title>Menus</title> 
+  <style>
+   
+    body, html {
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    main {
+      overflow-y: auto;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+  </style>
 </head>
 <body>
   <header-component></header-component>
   <main>
-    <div class="body-text"><h1>This is the menus page!</h1></div> 
+    <div class="body-text"><center><h1>Menu Of The Day</h1></center></div>
+    <div class="food-gallery">
+      <figure class="gallery__item gallery__item--1">
+        <img src="../src/images/food_img1.jpeg" class="gallery__img" alt="Image 1">
+      </figure>
+      <figure class="gallery__item gallery__item--2">
+        <img src="../src/images/food_img2.jpeg" class="gallery__img" alt="Image 2">
+      </figure>
+      <figure class="gallery__item gallery__item--3">
+        <img src="../src/images/food_img3.jpeg" class="gallery__img" alt="Image 3">
+      </figure>
+      <figure class="gallery__item gallery__item--4">
+        <img src="../src/images/food_img4.jpeg" class="gallery__img" alt="Image 4">
+      </figure>
+      <figure class="gallery__item gallery__item--5">
+        <img src="../src/images/food_img5.jpeg" class="gallery__img" alt="Image 5">
+      </figure>
+      <figure class="gallery__item gallery__item--6">
+        <img src="../src/images/food_img6.jpeg" class="gallery__img" alt="Image 6">
+      </figure>
+    </div>
+
+    <div class="menu-container">
+      <div class="body-text"><h3>Main Dishes</h3></div><br></br> 
+      <div class="row">
+        <div class="col-md-6">
+          <div class="item">Item 1</div>
+        </div>
+        <div class="col-md-6">
+          <div class="price">$10.99</div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="item">Item 2</div>
+        </div>
+        <div class="col-md-6">
+          <div class="price">$19.99</div>
+        </div>
+      </div>
+  
+      <!-- Add more rows as needed -->
+  
+    </div>
   </main>
+
   <footer-component></footer-component>
+
+  <!-- Link to Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>

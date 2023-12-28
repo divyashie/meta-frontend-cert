@@ -19,9 +19,7 @@ footerTemplate.innerHTML = `
       color: #fff;
       text-align: center;
       padding: 20px;
-      position: fixed;
       width: 100%;
-      bottom: 0;
     }
 
     /* Company Info Container */
@@ -48,6 +46,17 @@ footerTemplate.innerHTML = `
     }
 
     nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    /* Quick Links Container */
+    .quick-links {
+      margin-top: 20px;
+    }
+
+    .quick-links a {
       color: #fff;
       margin: 0 10px;
       text-decoration: none;
@@ -92,8 +101,8 @@ footerTemplate.innerHTML = `
     <div class="company-info">
       <h2>Little Lemon</h2>
       <p>200 N Michigan Ave, Chicago, IL, 60601, USA</p>
-      <p>Phone: +200 123 456 789 
-      <p>Email: little-lemon@email.com
+      <p>Phone: +200 123 456 789</p>
+      <p>Email: little-lemon@email.com</p>
     </div>
 
     <div class="social-links">
@@ -102,8 +111,15 @@ footerTemplate.innerHTML = `
       <a href="https://instagram.com" target="_blank"><img src="../src/images/instagram.png" alt="Instagram"></a>
       <!-- Add more social media links as needed -->
     </div>
+
+    <!-- Quick Links Container -->
+    <div class="quick-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <!-- Add more quick links as needed -->
+    </div>
   </footer>
-`; 
+`;
 
 class Footer extends HTMLElement {
   constructor() {
@@ -117,4 +133,3 @@ class Footer extends HTMLElement {
 }
 
 customElements.define('footer-component', Footer);
-
