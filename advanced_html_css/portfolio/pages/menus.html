@@ -12,19 +12,11 @@
   <script src="../components/footer.js" type="text/javascript" defer></script>
   <title>Menus</title> 
   <style>
-   
-    body, html {
-      min-height: 100vh;
-      margin: 0;
+    body {
+      background: beige url('../src/images/border-deco.jpeg') center/cover no-repeat;
     }
-
-    main {
-      overflow-y: auto;
-      padding: 20px;
-      min-height: 100vh;
-    }
-
   </style>
+</style>
 </head>
 <body>
   <header-component></header-component>
@@ -51,29 +43,62 @@
       </figure>
     </div>
 
-    <div class="menu-container">
-      <div class="body-text"><h3>Main Dishes</h3></div><br></br> 
+    <div class="container mt-5">
       <div class="row">
+        <!-- Main Dishes -->
         <div class="col-md-6">
-          <div class="item">Item 1</div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Main Dishes</h5>
+              <ul class="list-group">
+                <li class="list-group-item">Grilled Salmon - $8.99</li>
+                <li class="list-group-item">Tacos - $10.99</li>
+                <li class="list-group-item">Ratatouille - $7.99</li>
+                <li class="list-group-item">Tandoori Chicken - $7.99</li>
+                <li class="list-group-item">Shrimp scapi - $7.99</li>
+                <li class="list-group-item">Eggplant parmesean - $7.99</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <div class="price">$10.99</div>
-        </div>
-      </div>
+    
+        <div class="container mt-5">
+          <div class="row">
+            <!-- Salad Container -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Salads</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item">Chicken Caesar - $8.99</li>
+                    <li class="list-group-item">Greek - $10.99</li>
+                    <li class="list-group-item">Mediterranean - $7.99</li>
+                    <!-- Add more salad items as needed -->
+                  </ul>
+                </div>
+              </div>
+            </div>
       
-      <div class="row">
+      <div class="container mt-5">
+        <div class="row">
+        <!-- Drink Container -->
         <div class="col-md-6">
-          <div class="item">Item 2</div>
-        </div>
-        <div class="col-md-6">
-          <div class="price">$19.99</div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Drinks</h5>
+              <ul class="list-group">
+                <li class="list-group-item">Mojito - $2.99</li>
+                <li class="list-group-item">Pina Colada - $1.99</li>
+                <li class="list-group-item">Phoenix Beer - $3.49</li>
+                <!-- Add more drink items as needed -->
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-  
-      <!-- Add more rows as needed -->
-  
     </div>
+    </div>
+  </div>
   </main>
 
   <footer-component></footer-component>
