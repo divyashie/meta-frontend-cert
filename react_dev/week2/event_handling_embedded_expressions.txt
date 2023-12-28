@@ -69,3 +69,7 @@ function App(){
 
 export default App; 
 
+It uses arrow functions, but also allows us to handle 
+situations where our separate function expression spans 
+multiple lines of code. 
+

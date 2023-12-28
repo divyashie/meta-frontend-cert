@@ -1,0 +1,284 @@
+/* Reset and Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #23252C;
+  color: #ffff;
+}
+
+.card-section {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.about-card {
+  width: 320px;
+  margin: 20px;
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  height: 400px; /* Adjust the height as needed */
+  position: relative;
+  overflow: hidden; /* Add overflow property for scrolling */
+}
+
+.flipping-cards {
+  display: flex;
+  justify-content: space-around;
+}
+
+.front-face,
+.back-face {
+  background-color: #1a1b21;
+  color: #ffffff;
+  width: 320px;
+  margin: 30px auto;
+  border-radius: 10px;
+  transition: all 0.8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow-y: auto; /* Make it scrollable */
+  transform-style: preserve-3d;
+  height: 100%;
+  padding: 20px; /* Add padding for better readability */
+  box-sizing: border-box; /* Add box-sizing property */
+}
+
+.front-face {
+  background-color: beige;
+  color: black;
+  transform: rotateY(0deg);
+  transform-origin: top left;
+  z-index: 2;
+}
+
+.back-face {
+  background-color: darkcyan;
+  color: white;
+  transform: rotateY(180deg);
+  transform-origin: top left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Add padding for better readability */
+  box-sizing: border-box; /* Add box-sizing property */
+  height: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* About card back */
+.back-face .info-section {
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Add box-sizing property */
+  overflow-y: scroll;
+}
+
+.about-card:hover .front-face {
+  transform: rotateY(-180deg);
+}
+
+.about-card:hover .back-face {
+  transform: rotateY(0);
+}
+
+/* About card front */
+.profile-picture {
+  width: 100%;
+  height: 100%; /* Maintain aspect ratio */
+  max-height: 210px;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Responsive layout - when the screen is less than 600px wide */
+@media screen and (max-width: 600px) {
+  .about-card {
+    width: 100%;
+  }
+}
+
+/* Form Styles */
+.body-text-contact{
+  text-align: center;
+  -webkit-text-fill-color: black;
+}
+.container-contact-form {
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.container-contact-form h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Adjust styling for the label */
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333; /* Set label color */
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* menus page */ 
+.food-gallery {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 5vw);
+  grid-gap: 15px;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease; /* Add transition for a smoother effect */
+}
+.gallery__item--1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.gallery__item--2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.gallery__item--3 {
+  grid-column-start: 5;
+  grid-column-end: 9;
+  grid-row-start: 1;
+  grid-row-end: 6;
+}
+.gallery__item--4 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 6;
+}
+.gallery__item--5 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 6;
+  grid-row-end: 9;
+}
+.gallery__item--6 {
+  grid-column-start: 5;
+  grid-column-end: 9;
+  grid-row-start: 6;
+  grid-row-end: 9;
+}
+
+.gallery__img:hover{
+  opacity:0.6; 
+}
+
+
+/* You can keep your custom styles here if needed */
+.item, .price {
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+/* Main Dishes */
+.main-dishes {
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.main-dishes h3 {
+  color: #343a40; /* Dark text color */
+  text-align: center;
+}
+
+.main-dishes .row {
+  margin-bottom: 15px;
+}
+
+.main-dishes .item, .main-dishes .price {
+  padding: 10px;
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 5px;
+}
+
+/* Salads and Drinks */
+.menu-category {
+  margin-top: 40px;
+}
+
+.menu-category h5 {
+  text-align: center;
+  color: #343a40; /* Dark text color */
+}
+
+.menu-category .card {
+  background-color: #f8f9fa; /* Light gray background */
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.menu-category .card-body {
+  padding: 20px;
+}
+
+.menu-category .list-group-item {
+  background-color: #e2e3e5; /* Medium gray background */
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.menu-category .list-group-item:last-child {
+  margin-bottom: 0;
+}

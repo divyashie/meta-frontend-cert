@@ -1,0 +1,165 @@
+USING HOOKS 
+
+Consider a component with an input text field. The user can type 
+into this text field. The component needs to store what the user 
+types within the this text field. 
+You can add state and use the useState hook to hold the string. 
+As the user types, the local state gets updated for the string; 
+keeping the latest version. 
+
+import { useState } from 'react'; 
+
+export default function InputComponent(){
+    const [inputText, setText] = useState('hello'); 
+
+    function handleChange(e){
+        setText(e.target.value); 
+    }
+    return (
+        <> 
+            <input value={inputText} onChange={handleChange} /> 
+            <p>You typed: {inputText}</p> 
+            <button onClick={() => setText('hello')}>
+                Reset 
+            </button> 
+        </>
+    );
+}
+
+`InputComponent` renders 3 things: 
+    - An input text field 
+    - Any text that has been entered into the field 
+    - A Reset button to set the field back to its default state. 
+
+As the user types within the text field, the current text that was typed 
+also gets displayed. 
+
+The state variable `inputText` and the `setText` method are used to set 
+the current text that is typed. The `useState` hook is initialized at the 
+beginning of the component. 
+
+const[inputText, setText] = useState('hello'); 
+
+By default, the `inputText` will be set to "hello". 
+As the user types, the `handleChange` function, reads the 
+latest input value from the browser's input DOM element, and 
+calls the `setText` function, to update the local state of 
+`inputText`. 
+
+function handleChange(e){
+    setText(e.target.value); 
+}; 
+
+Finally, clicking reset button will bring `inputText` back to "hello". 
+
+`inputText` is local state and is local to `InputComponent`; outside of
+this component, `inputText` is unavailable and unknown. 
+In React, state is always referred to the local state of a component. 
+
+Hooks also come with a set of rules, that you need to follow while using them. 
+This applies to all React hooks, including the `useState` hook: 
+    - Only call hooks at top level of your component or your own hooks 
+    - Cannot call hooks inside loops or conditions 
+    - Can only call hooks from React functions, not regular JS functions. 
+
+Let's include 3 input text fields within a single component. 
+Example: consider this registration form with fields: first name, 
+last name, and email. 
+
+import { useState } from 'react'; 
+
+export default function RegisterForm(){
+    const [form, setForm] = useState({
+        firstName: 'Luke', 
+        lastName: 'Jones', 
+        email: 'lukeJones@sculpture.com', 
+    }); 
+
+    return(
+        <> 
+            <label> 
+                First name: 
+                <input 
+                    value={form.firstName}
+                    onchange={e => {
+                        setForm({
+                            ...form, 
+                            firstName: e.target.value
+                        });
+                    }}
+                /> 
+            </label> 
+            <label> 
+                Last name: 
+                <input 
+                    value={form.lastName} 
+                    onChange={ e => {
+                        setForm({
+                            ...form, 
+                            lastName: e.target.value
+                        }); 
+                    }}
+                /> 
+            </label> 
+        <label> 
+            Email: 
+            <input 
+                value={form.email} 
+                onChange={ e=> {
+                    setForm({
+                        ...form, 
+                        email: e.target.value
+                    }); 
+                }}
+            /> 
+        </label> 
+        <p> 
+            {form.firstName}{' '} 
+            {form.lastName}{' '}
+            ({form.email})
+        </p>
+    ); 
+}
+
+Using a form object to store the state of all 3 text input field values: 
+
+const[form, setForm] = useState({
+    firstName: 'Luke', 
+    lastName: 'Jones', 
+        email: 'lukeJones@sculpture.com', 
+}); 
+
+Instead of 3 separate state variables, you can consolidate them 
+all together into one form object for better readability. 
+Besides the `useState` hook, you have `useContext`, `useMemo`, `useRef`... 
+To share and reuse the same logic across several components, you can extract 
+the logic into a custom hook. 
+    Custom hooks offer flexibility, and widely used for form handling, animation, 
+    timers, and ... 
+
+------ The useRef Hook ---------
+
+`useRef` hook accesses a child element directly. 
+It returns a `ref` object which has a property named `current`. 
+
+function TextInputWithFocusButton(){
+    const inputEl = useRef(null); 
+    const onButtonClick = () => {
+        // `current` points to the mounted text input element 
+        inputEl.current.focus(); 
+    }; 
+    return (
+        <> 
+            <input ref={inputEl} type="text" /> 
+            <button onClick={onButtonClick}>Focus the input</button> 
+        </> 
+    ); 
+}
+
+To access the current value and invoke the focus() method, we can 
+use the ref attribute on the input element, thereby focusing the input 
+field. 
+
+useRef hook works best for accessing the DOM directly. 
+
+
