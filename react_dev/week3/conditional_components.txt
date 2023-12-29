@@ -1,0 +1,46 @@
+let name; 
+if (Math.random() > 0.5) {
+    name = "Mike"
+} else {
+    name = "Susan"
+}
+
+let name; 
+let newUser = true; 
+if (Math.random() > 0.5 && newUser){
+    name = "Mike"
+} else {
+    name = "Susan"
+}
+
+By using conditions, you can return different 
+child components. This is done using the props 
+that are passed into the parent component, but 
+can also be done based on component state. 
+
+You have 2 child components: LoginButton and LogoutButton; 
+each displaying their corresponding button. 
+
+In the parent component, LogInOutButton, you can check the props 
+passed into the parent component, and return a different child 
+component based on the value of the props. 
+
+The props contains a property named isLoggedIn. When this set to 
+true, the LogOutButton component is returned. Otherwise, the LoginButton 
+component is returned.
+
+function LogInOutButton(props){
+    const isLoggedIn = props.isLoggedIn; 
+    if (isLoggedIn){
+        return <LogoutButton />; 
+    } else {
+        return <LoginButton />; 
+    }
+}
+
+
+Then when the LogInOutButton parent component is used, 
+the prop can be passed in. 
+
+<LogInOutButton isLoggedIn={false} /> 
+
