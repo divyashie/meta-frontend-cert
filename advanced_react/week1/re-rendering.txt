@@ -1,0 +1,46 @@
+// HOW RE-RENDERING WORKS WITH CONTEXT \\ 
+
+How to use the `useMemo` hook to guarantee object references
+don't change during re-rendering. 
+
+When a component consumes some context value and the value of 
+this context changes, that component re-renders. 
+
+When it comes to the default behavior of React rendering, if a 
+component renders, React will recursively re-render all its children 
+regardless of props or context. 
+
+The following component structure, where the top level component 
+injects a Context provider at the top: 
+
+App (ContextProvider) > A > B > C
+
+const App = () => {
+    return (
+        <AppContext.Provider> 
+            <ComponentA /> 
+        </AppContext.Provider> 
+    ); 
+}; 
+
+const ComponentA = () => <ComponentB />; 
+const ComponentB = () => <ComponentC />; 
+const ComponentC = () => null; 
+
+
+useMemo will memorize the returned value from the function 
+passed as the first argument and will only re-run the 
+computation if any of the values are passed into the array 
+as a second argument change. 
+
+With that implementation, if the App re-renders for any other 
+reason that does not change any of 'a' or 'b' values, the sequence 
+of re-renders will be as such: 
+
+--------- App (ContextProvider) ---------
+This is the desired result, avoiding an unnecessary re-render 
+on ComponentC. `useMemo` guarantees keeping the same object reference 
+for the `value` variable and since that's assigned to the provider's 
+value, it determines that the context has not changed and should not 
+notify any consumer. 
+
