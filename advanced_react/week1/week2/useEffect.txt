@@ -1,0 +1,100 @@
+// USEFFECT HOOK \\ 
+
+useEffect hook - a builtin React hook - best suited to perform 
+side effects in your React components. 
+
+Depending on your configuration via the dependencies array, your 
+effects can also run when certain state variables or props change. 
+
+By default, if no second argument is provided to the `useEffect` 
+function, the effect will run after every render. 
+
+useEffect(() => {
+    document.title = 'Little Lemon'; 
+}); 
+
+However, that may cause performance issues, especially if 
+your side effects are computationally intensive. 
+To skip applying an effect, React passes an array as a second 
+parameter to the useEffect. 
+
+useEffect(() => {
+    document.title = `Little Lemon, v${version}`;
+}, [version]); //Only re-run the effect if version changes 
+
+If version is 2 and the component re-renders and version still 
+equals 2, React will compare [2] from the previous render 
+and [2] from the next render. 
+Since all items inside the array are the same, React would skip 
+running the effect. 
+
+
+------- Use multiple Effects to Separate Concerns ------ 
+
+ - React does not limit you in the number of effects your   
+    components can have. 
+ - It encourages you to group related logic together in the 
+    same effect and break up unrelated logic into different 
+    effects. 
+
+function MenuPage(props){
+    const [data, setData] = useState([]); 
+
+    useEffect(() => {
+        document.title = 'Little Lemon'; 
+    }, []); 
+
+    useEffect(() => {
+        fetch(`https://littlelemon/menu/${id}`)
+        .then(response => response.json())
+        .then(json => setData(json)); 
+    }, [props.id]); 
+
+    // ...  
+}
+
+
+Multiple hooks allow you to split the code based 
+on what it is doing, improving code readability 
+and modularity. 
+
+-------- Effects  with cleanup ---------- 
+
+Some side effects may need to clean up resources 
+or memory that is not required anymore, avoiding 
+any memory leaks that could slow down your applications. 
+
+You may want to set up a subscription to an external data 
+source. It is crucial to perform a cleanup after the effect 
+finishes its execution. 
+
+The useEffect hook has been designed to keep the code for adding 
+and removing a subscription together, since it is tightly related. 
+
+If your effect returns a function, React will run it when it is time 
+to clean up resources and free unused memory. 
+
+function LittleLemonChat(props){
+    const [status, chatStatus] = useState('offline'); 
+
+    useEffect(() => {
+        LemonChat.subscribeToMessages(props.chatId, () => setStatus('online'))
+
+        return () => {
+            setStatus('offline'); 
+            LemonChat.unsubscribeFromMessages(props.chatId); 
+        }; 
+    }, []); 
+
+    // ... 
+}
+
+In case you need additional cleanup in your components, 
+you can return a function. React will ensure the cleanup 
+logic when it is needed. The execution will always happen 
+when the component unmounts. 
+
+However, in effects that run after every render and not just once, React will also clean 
+up the effect from the previous render before running the new 
+effect next time. 
+
