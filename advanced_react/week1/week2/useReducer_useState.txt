@@ -1,0 +1,20 @@
+// When to choose useReducer vs useState \\ 
+
+1. The useState hook is best used on less complex data. 
+2. With useState, you can use any kind of data structure; 
+    better use with primitive data types: strings, numbers, or booleans. 
+3. More complex data, such as arrays or objects 
+
+useState can sometimes feel easier than thinking about how 
+the state is controlled when working with useReducer. 
+    - On the left side of which, there is the useState hook 
+        with primitive data types and simple use cases, such as 
+        toggling a variable on or off. 
+    - "If my state object has >=3 properties, I'll use the `useReducer` hook" 
+
+Neg side: 
+useState is often hard to maintain as the state gets more complex. 
+It requires more prep work to begin with, there's more setup involved. 
+Once the setup is completed, it gets easier to extend the code based on 
+new requirements. 
+

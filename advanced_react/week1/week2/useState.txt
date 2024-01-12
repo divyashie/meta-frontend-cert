@@ -1,0 +1,149 @@
+// WORKING WITH COMPLEX DATA IN USESTATE \\ 
+
+Holding state in an object and updating it based on user-generated events 
+
+import { useState } from "react"; 
+
+export default function App(){
+    const [greeting, setGreeting] = useState({ greet: "Hello, World" }); 
+    console.log(greeting, setGreeting); 
+
+    function updateGreeting(){
+    setGreeting({ greet: "Hello, World-wide web" }); 
+    }
+
+    return (
+        <div> 
+        <h1>{greeting.greet}</h1> 
+        <button onClick={updateGreeting}>Update greeting</button> 
+        </div> 
+    ); 
+} 
+
+It is not recommended way of working with state objects in React. 
+Because the state object usually has more than a single property, 
+and it is costly to update the entire object for the sake of updating 
+only a small part of it. 
+
+------ The correct way to update the state object in React is using useState ---- 
+
+When using useState is to copy the state object and then update the copy. 
+This usually involves using the spread operator (...) 
+
+import { useState } from "react"; 
+
+export default function App(){
+    const [greeting, setGreeting] = useState({greet: "Hello, World"}); 
+
+    function updateGreeting(){
+        const newGreeting = {...greeting}; 
+        newGreeting.greet = "Hello, World-Wide Web"; 
+        setGreeting(newGreeting); 
+    }
+
+    return(
+        <div> 
+            <h1>{greeting.greet}</h1> 
+            <button onClick={updateGreeting}>Update greeting</button> 
+        </div> 
+    ); 
+}
+
+----- Incorrect ways of trying to update the state object ------
+What happens when you try to update the old state object directly? 
+
+import { useState } from "react"; 
+
+export default function App(){
+    const [greeting, setGreeting] = useState({greet: "Hello, World"}); 
+    console.log(greeting, setGreeting); 
+
+    function updateGreeting(){
+        greeting = {greet: "Hello, World-Wide Web"}; 
+        setGreeting(greeting); 
+    }
+    return(
+        <div>
+            <h1>{greeting.greet}</h1> 
+            <button onClick={updateGreeting}Update greeting</button> 
+        </div> 
+    ); 
+}
+
+There is a typeerror hiding inside of it. 
+TypeError is "Assignment to constant variable" 
+That means, you cannot reassign a variable declared using const, 
+such as in the case of the `useState` hook's array destructuring: 
+
+const [greeting, setGreeting] = useState({greet: "Hello, World"}); 
+
+---- Another approach: updating state when working with a state object ------ 
+
+import { useState } from "react"; 
+
+export default function App(){
+    const [greeting, setGreeting] = useState({greet: "Hello, World"}); 
+    console.log(greeting, setGreeting); 
+
+    function updateGreeting(){
+        greeting.greet = "Hello, World-Wide Web"; 
+        setGreeting(greeting); 
+    }
+    return(
+        <div>
+            <h1>{greeting.greet}</h1> 
+            <button onClick={updateGreeting}>Update greeting</button> 
+        </div> 
+    ); 
+}
+
+
+It does not throw any errors; however it does not update the heading, 
+so it is not working correctly. 
+Regardless of how many times you click "Update greeting" it will still be 
+"Hello, World" 
+
+To reiterate, the proper way of working with state when it is saved as an object: 
+    1. Copy the old state object using the spread (...) operator and save it into a new variable and 
+    2. Pass the new variable to the state-updating function 
+
+----- Updating the state object using arrow functions -------
+Let's use a mroe complex object to update state. 
+The state object has 2 properties: greet and location. 
+
+What to do when only a specific property of the state object is changing, 
+while keeping the remaining properties unchanged: 
+
+export default function App(){
+    const [greeting, setGreeting] = useState(
+        {
+            greet: "Hello", 
+            place: "World"
+        }
+    ); 
+    console.log(greeting, setGreeting);
+
+    function updateGreeting(){
+        setGreeting(prevState => {
+            return {...prevState, place: "World-Wide Web"}
+        }); 
+    }
+    return (
+        <div> 
+            <h1>{greeting.greet}, {greeting.place}</h1> 
+            <button onClick={updateGreeting}Update greeting</button>
+        </div>
+    ); 
+}
+
+It uses the previous state, which is named `prevState` 
+and this is previous value of the greeting variable. 
+It makes a copy of the `prevState` object, and updates 
+only the place property on the copied object. It then 
+returns a brand-new object: 
+
+return {...prevState, place: "World-Wide Web"}
+
+Everything is wrapped in {} so that this new object is built 
+correctly, and it is returned from the call to setGreeting. 
+
