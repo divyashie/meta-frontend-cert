@@ -1,0 +1,82 @@
+// DATA FETCHING USING HOOKS \\ 
+
+1. Fetch data using hooks 
+2. Fetch data from a third-party API 
+    (a side-effect that requires use of useEffect hook to deal with the Fetch API calls in React)
+
+You also explored how the response from fetching third-party data might fail, or be delayed, and 
+that it can be useful to provide different renders, based on whether or not the data has been 
+received. 
+
+Fetching data from a third-party API is considered a side-effect. 
+Being a side-effect, you need to use the useEffect hook to deal with 
+using the Fetch API calls in React. 
+
+Consider an example where a component is fetching some data from an 
+external API to display information about a cryptocurrency. 
+
+import { useState, useEffect } from "react"; 
+
+export default function App(){
+    const [btcData, setBtcData] = useState({}); 
+    useEffect(() => {
+        fetch(`https://api.coindesk.com/v1/bpi/currentPrice.json`)
+        .then((response) => response.json())
+        .then((jsonData) => setBtcData(jsonData.bpi.USD))
+        .catch((error) => console.log(error)); 
+    }, []);
+
+    return(
+        <>
+            <h1>Current BTC/USD data </h1> 
+            <p>Code: {btcData.code}</p> 
+            <p>Symbol: {btcData.rate}</p> 
+            <p>Rate: {btcData.rate}</p> 
+            <p>Description: {btcData.description}</p> 
+            <p>Rate Float: {btcData.rate_float}</p>
+        </>
+    ); 
+}
+
+To fetch data from a third party API, you need to pass an 
+anonymous function as a call to the `useEffect` hook. 
+
+--------
+The simplest conditional rendering might involve setting up 
+2 renders, based on whether or not the data has been successfully 
+fetched. 
+
+return someStateVariable.length > 0 ? (
+    <div> 
+        <h1>Data returned:</h1> 
+        <h2>{someStateVariable.results[0].price}</h2> 
+    </div> 
+) : (
+    <h1>Data pending...</h1> 
+); 
+
+- Here, we are conditionally returning an h1 and h2 
+    If the length of the someStateVariable binding's length is longer than 0. 
+- This approach would work if the someStateVariable holds an array. 
+
+1. Initialize an empty array in someStateVariable
+2. Pass the call to the useState hook
+3. Update this state variable with an array item that 
+    might get returned from a fetch() call to a 3rd JSON data provider. 
+4. The length of the someStateVariable would increase from starting length 
+    of 0 -- because an empty array's length is 0. 
+
+return someStateVariable.length > 0 ? (
+    <div> 
+        <h1>Data returned:</h1> 
+        <h2>{someStateVariable.results[0].price}</h2> 
+    </div>
+) : (
+    <h1>Data pending...</h1>
+); 
+
+If the data fetching fails, the text of "Data pending..." will 
+render on the screen, since the length of the someStateVariable 
+will remain 0. 
+
+
