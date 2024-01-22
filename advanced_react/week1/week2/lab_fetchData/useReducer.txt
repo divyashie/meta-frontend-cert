@@ -1,0 +1,4 @@
+// useReducer vs useState \\ 
+
+The useState hook is best used on less complex data. 
+

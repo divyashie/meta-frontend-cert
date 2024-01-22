@@ -1,0 +1,153 @@
+// TYPES OF CHILDREN \\ 
+
+To pass children: 
+    1. rendering string literals 
+    2. or, using JSX elements and JS expressions 
+
+Also, to understand the types of JS values that 
+are ignored as children and do not render anything. 
+
+------
+STRING LITERALS 
+
+    - refer to simple JS strings 
+    - can be put between <> tags, 
+    - children prop will be that string 
+
+<MyComponent>Little Lemon</MyComponent> 
+
+To understand what to expect on your screen when those edge 
+cases occur. 
+
+    1. JSX removes whitespaces at the beginning and end of a line, as 
+        well as blank lines
+    2. New lines adjacent to tags are removed: 
+    3. JSX condenses new lines that happen in the middle of string literals into a single space 
+        That means that all the instances above render the same thing. 
+
+--------
+JSX ELEMENTS 
+
+    1. You can provide JSX elements as children to display nested components: 
+
+        <Alert> 
+            <Title />
+            <Body /> 
+        </Alert> 
+
+    2. JSX also enables mixing and matching different types of children, like a 
+        combination of string literals and JSX elements: 
+
+        <Alert>
+            <div>Are you sure?</div> 
+            <Body /> 
+        </Alert> 
+
+A React component can also return a bunch of elements without wrapping 
+them in an extra tag. For that, you can use React Fragments either using 
+the explicit component imported from React or empty tags, which is a shorter
+syntax for a fragment. 
+
+A React Fragment component lets you group a list of children without adding 
+extra nodes to the DOM. 
+
+return (
+    <React.Fragment> 
+        <li>Pizza margarita</li> 
+        <li>Pizza diavola</li> 
+    </React.Fragment> 
+); 
+
+return (
+    <> 
+        <li>Pizza margarita</li> 
+        <li>Pizza diavola</li> 
+    </>
+); 
+
+------------
+JAVASCRIPT EXPRESSIONS 
+
+<MyComponent>Little Lemon</MyComponent>  -- this is preferred
+<MyComponent>{'Little Lemon'}</MyComponent> 
+
+JS expressions can be helpful when rendering a list of JSX 
+elements of arbitrary length: 
+
+function Dessert(props){
+    return <li>{props.title}</li>; 
+}
+
+function List(){
+    const desserts = ['tiramisu', 'ice cream', 'cake']; 
+    return(
+        <ul> 
+            {desserts.map((dessert) => <Item key={dessert} title={dessert} />)}
+        </ul> 
+    ); 
+}
+
+JS expressions with other types of children without having to resort to 
+stirng templates. 
+
+function Hello(props){
+    return <div>Hello {props.name}!</div>; 
+}
+
+-------
+FUNCTIONS
+
+Consider a JS expression inside JSX: 
+    - React will evaluate it to a single string: 
+        - a react element 
+        - or a combination of the two 
+    - The children prop works like any other prop 
+        it can be used to pass any type of data, like functions 
+
+-------
+BOOLEANS, NULL, & UNDEFINED, are IGNORED 
+
+  - false, null, undefined, and true are all valid children. 
+  - They simply do not render anything. 
+  - The below expressions will all render the same thing: 
+    <div /> 
+    <div></div> 
+    <div>{false}</div> 
+    <div>{null}</div> 
+    <div>{undefined}</div> 
+    <div>{true}</div> 
+
+When used in isolation, they do not offer any value. 
+However, boolean values like true and false can be 
+helpful to conditionally render React elements, like 
+rendering a Modal component only if the variable 
+showModal is true. 
+
+<div> 
+    {showModal && <Modal />}
+</div> 
+
+React still renders some "false" values, like the 0 number. 
+The below code will not behave as you may expect because 0 
+will be printed when props.desserts is an empty array: 
+
+<div> 
+    {props.desserts.length && 
+        <DessertList desserts={props.desserts} /> 
+    
+    }
+</div> 
+
+To fix this, you need to make sure the expression before 
+&& is always boolean: 
+
+<div> 
+    {props.desserts.length > 0 && 
+        <DessertList desserts={props.desserts} /> 
+    }
+</div> 
+
+<div> 
+    {!!props.desserts.length && 
+        <DessertList desserts={props.desserts} />
+    }
